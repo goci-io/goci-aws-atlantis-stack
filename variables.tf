@@ -34,10 +34,6 @@ variable "aws_server_role_policies" {
   description = "List of Policies to grant Permissions to the Server Role. By default the Server only has Access to the State Bucket and Lock Table."
 }
 
-variable "cluster_fqdn" {
-  description = "Domain under which Atlantis will create its Ingress"
-}
-
 variable "k8s_namespace" {
   description = "Kubernetes Namespace to deploy the Helm Release into"
 }

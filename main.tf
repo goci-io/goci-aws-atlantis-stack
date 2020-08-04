@@ -15,7 +15,6 @@ module "server" {
   stage                         = "corp"
   region                        = var.region
   aws_region                    = var.aws_region
-  cluster_fqdn                  = var.cluster_fqdn
   repositories                  = local.repository_names
   k8s_namespace                 = var.k8s_namespace
   vc_host                       = var.git_host
@@ -31,6 +30,7 @@ module "server" {
   configure_nginx               = true
   configure_cert_manager        = true
   cert_manager_issuer_name      = data.terraform_remote_state.dns_module.outputs.issuer_name
+  cluster_fqdn                  = data.terraform_remote_state.dns_module.outputs.domain_name
 
   providers = {
     aws = aws.tenant
