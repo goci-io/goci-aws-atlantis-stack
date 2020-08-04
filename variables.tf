@@ -77,7 +77,7 @@ variable "git_organization" {
 }
 
 variable "repositories" {
-  type        = list(object({ name = string, create = bool }))
+  type        = list(object({ name = string, create = bool, private = bool }))
   description = "List of Repositories and additional Repository Configuration"
 }
 

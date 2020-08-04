@@ -2,6 +2,11 @@ locals {
   repository_names = [for repo in var.repositories:
     repo.name
   ]
+
+  create_repositories = [for repo in var.repositories:
+    repo
+    if repo.create
+  ]
 }
 
 module "server" {

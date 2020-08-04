@@ -1,6 +1,17 @@
+resource "github_repository" "repo" {
+  count                  = var.git_type == "github" ? length(local.create_repositories) : 0
+  name                   = lookup(local.create_repositories[count.index], "name")
+  private                = lookup(local.create_repositories[count.index], "private", true)
+  description            = "Terraform Infrastructure Repository for ${var.namespace} using Atlantis"
+  delete_branch_on_merge = true
+  default_branch         = "master"
+  topics                 = ["atlantis", "terraform", "infrastructure", "goci"]
+  homepage_url           = format("https://%s", module.server.atlantis_domain)
+}
+
 resource "github_branch_protection" "master" {
   count          = var.git_type == "github" ? length(var.repositories) : 0
-  repository     = var.repositories[count.index]
+  repository     = lookup(var.repositories[count.index], "name")
   branch         = "master"
   enforce_admins = true
 
@@ -20,7 +31,7 @@ resource "github_branch_protection" "master" {
 
 resource "github_repository_webhook" "webhook" {
   count      = var.git_type == "github" ? length(var.repositories) : 0
-  repository = var.repositories[count.index]
+  repository = lookup(var.repositories[count.index], "name")
   events     = ["issue_comment", "pull_request"]
 
   configuration {
