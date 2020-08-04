@@ -1,10 +1,11 @@
 terraform {
-  #required_version = ">= 0.13.0"
+  required_version = ">= 0.12.1"
   backend "s3" {}
 
   required_providers {
     random = "~> 2.3"
     local  = "~> 1.4"
+    github = "~> 2.9"
   }
 }
 
