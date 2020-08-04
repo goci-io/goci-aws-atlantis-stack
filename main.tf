@@ -20,6 +20,7 @@ module "server" {
   k8s_namespace                 = var.k8s_namespace
   vc_host                       = var.git_host
   vc_type                       = var.git_type
+  organization                  = var.git_organization
   encrypted_token               = var.git_token
   encrypted_user                = "goci-atlantis-bot"
   encrypted_secret              = random_password.secret.result
