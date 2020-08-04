@@ -1,9 +1,9 @@
 locals {
-  repository_names = [for repo in var.repositories:
+  repository_names = [for repo in var.repositories :
     repo.name
   ]
 
-  create_repositories = [for repo in var.repositories:
+  create_repositories = [for repo in var.repositories :
     repo
     if repo.create
   ]

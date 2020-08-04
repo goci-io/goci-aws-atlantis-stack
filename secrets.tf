@@ -17,8 +17,8 @@ resource "local_file" "private_ssh_ci_key" {
 
 # Webhook Secret
 resource "random_integer" "pw_length" {
-  min   = 21
-  max   = 36
+  min = 21
+  max = 36
 }
 
 resource "random_password" "secret" {
