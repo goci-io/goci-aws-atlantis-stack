@@ -81,6 +81,12 @@ variable "repositories" {
   description = "List of Repositories and additional Repository Configuration"
 }
 
+variable "apply_requirements" {
+  type        = list(string)
+  default     = ["mergable", "approved"]
+  description = "Requirements which must be met before allowing atlantis apply"
+}
+
 variable "persistent_directory" {
   default     = "/atlantis-data/persistent"
   description = "Persistent Data Directory to store Local Files on. Defaults to Atlantis Data Directory"

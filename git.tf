@@ -1,16 +1,32 @@
-module "github_repositories" {
-  source                   = "git::https://github.com/goci-io/github-repository.git?ref=tags/0.6.0"
-  count                    = var.vc_type == "github" ? length(var.repositories) : 0
-  repository_name          = lookup(var.repositories[count.index], "name")
-  create_repository        = lookup(var.repositories[count.index], "create")
-  github_organization      = var.git_organization
-  create_branch_protection = true
-  topics                   = ["terraform", "atlantis", "infrastructure", "goci"]
-  webhooks                 = [
-    {
-      name   = "atlantis"
-      events = ["issue_comment", "pull_request"]
-      url    = format("https://%s/events", var.atlantis_domain)
+resource "github_branch_protection" "master" {
+  count          = var.git_type == "github" ? length(var.repositories) : 0
+  repository     = var.repositories[count.index]
+  branch         = "master"
+  enforce_admins = true
+
+  dynamic "required_pull_request_reviews" {
+    for_each = contains(var.apply_requirements, "approved") ? [1] : []
+
+    content {
+      dismiss_stale_reviews = true
     }
-  ]
+  }
+
+  required_status_checks {
+    strict   = true
+    contexts = ["atlantis/plan"]
+  }
+}
+
+resource "github_repository_webhook" "webhook" {
+  count      = var.git_type == "github" ? length(var.repositories) : 0
+  repository = var.repositories[count.index]
+  events     = ["issue_comment", "pull_request"]
+
+  configuration {
+    url          = format("https://%s/events", module.server.atlantis_domain)
+    secret       = random_password.secret.result
+    content_type = "json"
+    insecure_ssl = false
+  }
 }
