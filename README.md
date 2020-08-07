@@ -2,6 +2,8 @@
 
 **Maintained by [@goci-io/prp-terraform](https://github.com/orgs/goci-io/teams/prp-terraform)**
 
+![terraform](https://github.com/goci-io/goci-aws-atlantis-stack/workflows/terraform/badge.svg?branch=master&event=push)
+
 [Install Stack on goci.io](https://goci.io/dashboard/providers/atlantis/wizard)
 
 ### Contains:
