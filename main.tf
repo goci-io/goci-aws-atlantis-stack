@@ -7,6 +7,11 @@ locals {
     repo
     if repo.create
   ]
+
+  branch_protections = [for repo in var.repositories :
+    repo
+    if repo.branch_protection
+  ]
 }
 
 module "server" {

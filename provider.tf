@@ -1,6 +1,5 @@
 terraform {
   required_version = ">= 0.12.1"
-  backend "s3" {}
 
   required_providers {
     random = "~> 2.3"

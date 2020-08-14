@@ -10,8 +10,8 @@ resource "github_repository" "repo" {
 }
 
 resource "github_branch_protection" "master" {
-  count          = var.git_type == "github" ? length(var.repositories) : 0
-  repository     = lookup(var.repositories[count.index], "name")
+  count          = var.git_type == "github" ? length(local.branch_protections) : 0
+  repository     = lookup(local.branch_protections[count.index], "name")
   branch         = "master"
   enforce_admins = true
 
