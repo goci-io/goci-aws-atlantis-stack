@@ -35,7 +35,7 @@ resource "github_repository_webhook" "webhook" {
   events     = ["issue_comment", "pull_request"]
 
   configuration {
-    url          = format("https://%s/events", module.server.atlantis_domain)
+    url          = local.atlantis_webhook_url
     secret       = random_password.secret.result
     content_type = "json"
     insecure_ssl = false

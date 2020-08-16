@@ -12,6 +12,8 @@ locals {
     repo
     if repo.branch_protection
   ]
+
+  atlantis_webhook_url = format("https://%s/events", module.server.atlantis_domain)
 }
 
 module "server" {
