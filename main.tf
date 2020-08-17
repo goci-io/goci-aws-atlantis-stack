@@ -40,6 +40,8 @@ module "server" {
   cluster_fqdn                  = data.terraform_remote_state.dns_module.outputs.domain_name
 
   providers = {
-    aws = aws.tenant
+    aws        = aws.tenant
+    helm       = helm
+    kubernetes = kubernetes
   }
 }
