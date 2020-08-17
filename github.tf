@@ -15,8 +15,14 @@ resource "github_repository" "repo" {
   homepage_url           = format("https://%s", module.server.atlantis_domain)
 }
 
+resource "github_branch" "master" {
+  count      = var.git_type == "github" ? length(local.create_repositories) : 0
+  repository = github_repository.repo[count.index].name
+  branch     = "master"
+}
+
 resource "github_branch_protection" "master" {
-  depends_on     = [github_repository.repo]
+  depends_on     = [github_branch.master]
   count          = var.git_type == "github" ? length(local.branch_protections) : 0
   repository     = lookup(local.branch_protections[count.index], "name")
   branch         = "master"
