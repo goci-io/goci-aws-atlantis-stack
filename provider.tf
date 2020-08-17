@@ -8,8 +8,22 @@ terraform {
   }
 }
 
+provider "kubernetes" {
+  version          = "~> 1.11"
+  load_config_file = false
+}
+
+provider "helm" {
+  version = "~> 1.1"
+
+  kubernetes {
+    load_config_file = false
+  }
+}
+
 provider "aws" {
   version = "~> 2.50"
+  region  = var.aws_region
 }
 
 provider "aws" {
