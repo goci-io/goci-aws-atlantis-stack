@@ -4,7 +4,6 @@ terraform {
   required_providers {
     random = "~> 2.3"
     local  = "~> 1.4"
-    github = "~> 2.9"
   }
 }
 
