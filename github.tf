@@ -1,3 +1,9 @@
+provider "github" {
+  version      = "~> 2.9"
+  token        = var.git_token
+  organization = var.git_organization
+}
+
 resource "github_repository" "repo" {
   count                  = var.git_type == "github" ? length(local.create_repositories) : 0
   name                   = lookup(local.create_repositories[count.index], "name")
