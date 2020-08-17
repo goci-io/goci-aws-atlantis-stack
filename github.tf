@@ -16,6 +16,7 @@ resource "github_repository" "repo" {
 }
 
 resource "github_branch_protection" "master" {
+  depends_on     = [github_repository.repo]
   count          = var.git_type == "github" ? length(local.branch_protections) : 0
   repository     = lookup(local.branch_protections[count.index], "name")
   branch         = "master"
@@ -36,6 +37,7 @@ resource "github_branch_protection" "master" {
 }
 
 resource "github_repository_webhook" "webhook" {
+  depends_on = [github_repository.repo]
   count      = var.git_type == "github" ? length(var.repositories) : 0
   repository = lookup(var.repositories[count.index], "name")
   events     = ["issue_comment", "pull_request"]
