@@ -13,7 +13,7 @@ resource "github_repository" "repo" {
   default_branch         = "master"
   gitignore_template     = "Terraform"
   topics                 = ["atlantis", "terraform", "infrastructure", "goci"]
-  homepage_url           = format("https://%s", module.server.atlantis_domain)
+  homepage_url           = format("https://%s", module.atlantis_server.atlantis_domain)
 }
 
 resource "github_branch_protection" "master" {
