@@ -34,6 +34,11 @@ variable "aws_server_role_policies" {
   description = "List of Policies to grant Permissions to the Server Role. By default the Server only has Access to the State Bucket and Lock Table."
 }
 
+variable "name" {
+  default     = "atlantis-aws"
+  description = "Name of Release"
+}
+
 variable "k8s_namespace" {
   description = "Kubernetes Namespace to deploy the Helm Release into"
 }

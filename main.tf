@@ -20,6 +20,7 @@ module "atlantis_server" {
   source                        = "git::https://github.com/goci-io/aws-atlantis-helm.git?ref=master"
   namespace                     = var.namespace
   stage                         = "managed"
+  name                          = var.name
   region                        = var.region
   aws_region                    = var.aws_region
   repositories                  = local.repository_names
@@ -42,6 +43,6 @@ module "atlantis_server" {
   providers = {
     aws        = aws.tenant
     helm       = helm
-    kubernetes = kubernetes.cluster
+    kubernetes = kubernetes
   }
 }
