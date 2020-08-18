@@ -8,7 +8,10 @@ terraform {
 }
 
 provider "kubernetes" {
+  # Avoid error: dial tcp 127.0.0.1:80: connect: connection refused
+  # This seems to be a random issue. Assigning an Alias to specifically pass down Provider config
   version          = "~> 1.11"
+  alias            = "cluster"
   load_config_file = false
 }
 

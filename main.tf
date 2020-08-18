@@ -42,6 +42,6 @@ module "atlantis_server" {
   providers = {
     aws        = aws.tenant
     helm       = helm
-    kubernetes = kubernetes
+    kubernetes = kubernetes.cluster
   }
 }
