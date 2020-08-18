@@ -8,5 +8,5 @@ output "webhook_secret" {
 }
 
 output "iam_role_arn" {
-  value = module.server.iam_role_arn
+  value = module.atlantis_server.iam_role_arn
 }
