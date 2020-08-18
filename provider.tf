@@ -12,7 +12,9 @@ provider "helm" {
 }
 
 provider "kubernetes" {
-  version = "~> 1.11"
+  # Using 1.11 or above results in:
+  # https://github.com/hashicorp/terraform-provider-kubernetes/issues/759
+  version = "1.10.0"
 }
 
 provider "aws" {
