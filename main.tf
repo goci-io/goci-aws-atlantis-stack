@@ -39,6 +39,7 @@ module "atlantis_server" {
   configure_cert_manager        = true
   cert_manager_issuer_name      = data.terraform_remote_state.dns_module.outputs.issuer_name
   cluster_fqdn                  = data.terraform_remote_state.dns_module.outputs.domain_name
+  helm_values_root              = abspath(path.module)
 
   providers = {
     aws = aws.tenant
