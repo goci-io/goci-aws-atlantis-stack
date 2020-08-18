@@ -9,6 +9,9 @@ terraform {
 
 provider "helm" {
   version = "~> 1.1"
+
+  kubernetes {
+  }
 }
 
 provider "kubernetes" {
