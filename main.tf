@@ -17,7 +17,7 @@ locals {
 }
 
 module "atlantis_server" {
-  source                        = "git::https://github.com/goci-io/aws-atlantis-helm.git?ref=tags/0.2.0"
+  source                        = "git::https://github.com/goci-io/aws-atlantis-helm.git?ref=tags/0.2.1"
   namespace                     = var.namespace
   stage                         = "managed"
   name                          = var.name
