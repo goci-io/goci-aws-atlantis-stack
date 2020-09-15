@@ -29,7 +29,7 @@ module "atlantis_server" {
   vc_type                       = var.git_type
   organization                  = var.git_organization
   encrypted_token               = var.git_token
-  encrypted_user                = "goci-atlantis-bot"
+  encrypted_user                = var.git_app_username
   encrypted_secret              = random_password.secret.result
   server_role_trusted_arns      = [format("arn:aws:iam::%s:role/%s", var.aws_identity_account_id, var.aws_trusted_role_name)]
   server_role_policy_statements = var.aws_server_role_policies

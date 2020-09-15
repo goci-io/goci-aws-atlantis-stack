@@ -77,6 +77,12 @@ variable "git_organization" {
   description = "Organization or Group to allow Webhooks from and create Resources in"
 }
 
+variable "git_app_username" {
+  type        = string
+  default     = "goci-atlantis-bot"
+  description = "Git User/App Name used for Authentication. Required for BitBucket App Passwords"
+}
+
 variable "repositories" {
   type        = list(object({ name = string, create = bool, private = bool, branch_protection = bool }))
   description = "List of Repositories and additional Repository Configuration"
